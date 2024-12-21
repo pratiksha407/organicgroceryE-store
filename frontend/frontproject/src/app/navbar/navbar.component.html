@@ -8,18 +8,55 @@
         </button>
         <a class="navbar-brand" routerLink="/">Organic Grocery Estore</a>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+      <div [ngSwitch]="menutype">
+      <div class="collapse navbar-collapse" id="myNavbar" *ngSwitchCase="'guest'">
         <ul class="nav navbar-nav">
           <li class="active"><a routerLink="/">Home</a></li>
           
-          <li><a routerLink="/product">Products</a></li>
-          <li><a routerLink="/feedback">Feedback</a></li>
+          <li><a routerLink="/aboutus">AboutUs</a></li>
+          <li><a routerLink="/products">Products</a></li>
+          <li><a routerLink="/contactus">ContactUs</a></li>
+           
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+          <li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          <li><a routerLink="/admin-login"><span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
+          <li><a routerLink="/adminlogin"><span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
         </ul>
       </div>
+
+      <div class="collapse navbar-collapse" id="myNavbar" *ngSwitchCase="'user'">
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="/">Home</a></li>
+          
+          
+          <li><a routerLink="products">Products</a></li>
+          <li><a routerLink="contactus">ContactUs</a></li>
+          <li><a routerLink="feedback">Feedback</a></li>
+          <li><a routerLink="buynow">BuyNow</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a (click)="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar" *ngSwitchCase="'admin'">
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="/">Home</a></li>
+          
+          <li><a routerLink="/manageproducts">Manage Products</a></li>
+          <li><a routerLink="/viewbuynow">View BuyNow</a></li>
+          <li><a routerLink="/viewfeedback">View Feedback</a></li>
+          <li><a routerLink="/viewregister">View Registrations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a (click)="alogout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        </ul>
+        
+      
     </div>
-  </nav>
+
+        
+      
+      </div>
+    </div>
+ </nav>

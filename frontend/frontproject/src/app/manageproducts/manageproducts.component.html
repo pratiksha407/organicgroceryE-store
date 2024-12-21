@@ -1,0 +1,35 @@
+<div class="container">
+    <h3>Add Products Here</h3>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Products Name</label>
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="products.productsname"
+                name="products">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Quantity</label>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="products.quantity"
+                name="quantity">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Mrp</label>
+            <input type="text" class="form-control" id="emailId" required [(ngModel)]="products.mrp" name="mrp">
+        </div>
+        <div class="form-group">
+            <label for="name">Products Image</label>
+            <input type="file" class="form-control" id="password" required multiple value="select"
+                (change)="onFileSelected($event)">
+            <div class="row">
+                <div *ngFor="let file of products.productsImages;let i =index" class="col-sm-2">
+                    <span class="close" (click)="removeImage(i)">x</span>
+                    <img [src]="file.url" alt="" width="100px" height="100px">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

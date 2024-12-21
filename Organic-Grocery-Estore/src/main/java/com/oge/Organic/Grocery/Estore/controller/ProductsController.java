@@ -2,11 +2,10 @@ package com.oge.Organic.Grocery.Estore.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,17 +24,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oge.Organic.Grocery.Estore.filework.FileStorageService;
-import com.oge.Organic.Grocery.Estore.model.Products;
 import com.oge.Organic.Grocery.Estore.model.ImageModel;
+import com.oge.Organic.Grocery.Estore.model.Products;
 import com.oge.Organic.Grocery.Estore.repository.ProductsRepository;
 
-@RestController
+import jakarta.servlet.http.HttpServletRequest;
+
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/project/")
+@RestController
+@RequestMapping("/products/")
 public class ProductsController {
 	@Autowired
 	@Qualifier("proRepo")
-	ProductsController proRepo;
+	ProductsRepository proRepo;
 
 	 @Autowired
 	    private FileStorageService fileStorageService;
@@ -61,6 +62,10 @@ public class ProductsController {
 		return null;
 		
 	}
+	private Products save(Products e) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	public Set<ImageModel> uploadImages(MultipartFile[] files) throws Exception
 	{
 		Set<ImageModel> images=new HashSet<>();
@@ -73,11 +78,9 @@ public class ProductsController {
 		return images;
 	}
 	@DeleteMapping("/product/{id}")
-	public void deletecourse(@PathVariable("id") long id)
+	public void deleteproducts(@PathVariable("id") long id)
 	{
-		proRepo.deleteById(id);
-		
-		
+		proRepo.deleteById(id);	
 	}
 	 @GetMapping("/downloadFile/{fileName:.+}")
 	    public ResponseEntity < Resource > downloadFile(@PathVariable String fileName, HttpServletRequest request) throws FileNotFoundException {
@@ -98,9 +101,9 @@ public class ProductsController {
 	        }
 
 	        return ResponseEntity.ok()
-	            .contentType(MediaType.parseMediaType(contentType))
-	            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-	            .body(resource);
-	    }
-}
+		            .contentType(MediaType.parseMediaType(contentType))
+		            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+		            .body(resource);
+		    }
+	}
 

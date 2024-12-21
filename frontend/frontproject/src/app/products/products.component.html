@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let c of products">
+            <div class="thumbnail">
+                <img src="http://localhost:9009/products/downloadFile/{{c.productsImages[0].name}}">
+                <div class="caption">
+                    <h3>productsname: {{c.productsname}}</h3>
+                    <h4>Mrp: {{c.mrp}}<br>Quantity: {{c.quantity}} </h4>
+                    <div [hidden]="!login">
+                        <input type="button" value="Enroll Now" class="btn btn-primary" (click)="enroll(c.id)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
